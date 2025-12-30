@@ -17,7 +17,7 @@ const NEWS_CATEGORIES = {
     dev: { name: '开发者', icon: 'icon-code', color: '#2ecc71' }
 };
 
-// 新闻源配置
+// 新闻源配置 - 使用可靠的直接 API
 const NEWS_SOURCES = {
     // Hacker News - 科技 (直接API，最可靠)
     hackernews: {
@@ -31,6 +31,76 @@ const NEWS_SOURCES = {
         type: 'hackernews',
         enabled: true
     },
+    // Hacker News Best - 学术/技术深度文章
+    hackernews_best: {
+        id: 'hackernews_best',
+        name: 'HN Best',
+        category: 'academic',
+        icon: 'https://news.ycombinator.com/favicon.ico',
+        color: '#ff6600',
+        api: 'https://hacker-news.firebaseio.com/v0/beststories.json',
+        itemApi: 'https://hacker-news.firebaseio.com/v0/item/{id}.json',
+        type: 'hackernews',
+        enabled: true
+    },
+    // Hacker News New - 综合/最新
+    hackernews_new: {
+        id: 'hackernews_new',
+        name: 'HN New',
+        category: 'general',
+        icon: 'https://news.ycombinator.com/favicon.ico',
+        color: '#ff6600',
+        api: 'https://hacker-news.firebaseio.com/v0/newstories.json',
+        itemApi: 'https://hacker-news.firebaseio.com/v0/item/{id}.json',
+        type: 'hackernews',
+        enabled: true
+    },
+    // Hacker News Ask - 综合/讨论
+    hackernews_ask: {
+        id: 'hackernews_ask',
+        name: 'HN Ask',
+        category: 'general',
+        icon: 'https://news.ycombinator.com/favicon.ico',
+        color: '#ff6600',
+        api: 'https://hacker-news.firebaseio.com/v0/askstories.json',
+        itemApi: 'https://hacker-news.firebaseio.com/v0/item/{id}.json',
+        type: 'hackernews',
+        enabled: true
+    },
+    // Hacker News Show - 开发者
+    hackernews_show: {
+        id: 'hackernews_show',
+        name: 'HN Show',
+        category: 'dev',
+        icon: 'https://news.ycombinator.com/favicon.ico',
+        color: '#ff6600',
+        api: 'https://hacker-news.firebaseio.com/v0/showstories.json',
+        itemApi: 'https://hacker-news.firebaseio.com/v0/item/{id}.json',
+        type: 'hackernews',
+        enabled: true
+    },
+    // GitHub Trending - 开发者 (直接 API)
+    github: {
+        id: 'github',
+        name: 'GitHub Trending',
+        category: 'dev',
+        icon: 'https://github.githubassets.com/favicons/favicon.svg',
+        color: '#24292e',
+        api: 'https://api.github.com/search/repositories?q=stars:>1000+pushed:>2024-12-01&sort=updated&order=desc&per_page=15',
+        type: 'github_api',
+        enabled: true
+    },
+    // GitHub ML/AI - 学术
+    github_ml: {
+        id: 'github_ml',
+        name: 'GitHub AI/ML',
+        category: 'academic',
+        icon: 'https://github.githubassets.com/favicons/favicon.svg',
+        color: '#24292e',
+        api: 'https://api.github.com/search/repositories?q=topic:machine-learning+stars:>500+pushed:>2024-12-01&sort=updated&order=desc&per_page=15',
+        type: 'github_api',
+        enabled: true
+    },
     // V2EX - 科技
     v2ex: {
         id: 'v2ex',
@@ -40,94 +110,6 @@ const NEWS_SOURCES = {
         color: '#1a1a1a',
         api: 'https://www.v2ex.com/api/topics/hot.json',
         type: 'v2ex',
-        enabled: true
-    },
-    // GitHub Trending - 开发者
-    github: {
-        id: 'github',
-        name: 'GitHub Trending',
-        category: 'dev',
-        icon: 'https://github.githubassets.com/favicons/favicon.svg',
-        color: '#24292e',
-        api: 'https://api.github.com/search/repositories?q=stars:>1000+pushed:>2024-01-01&sort=stars&order=desc&per_page=20',
-        type: 'github_api',
-        enabled: true
-    },
-    // Reddit Programming - 开发者
-    reddit_prog: {
-        id: 'reddit_prog',
-        name: 'Reddit Programming',
-        category: 'dev',
-        icon: 'https://www.redditstatic.com/desktop2x/img/favicon/favicon-32x32.png',
-        color: '#ff4500',
-        api: 'https://www.reddit.com/r/programming/hot.json?limit=20',
-        type: 'reddit',
-        enabled: true
-    },
-    // Reddit Technology - 科技
-    reddit_tech: {
-        id: 'reddit_tech',
-        name: 'Reddit Technology',
-        category: 'tech',
-        icon: 'https://www.redditstatic.com/desktop2x/img/favicon/favicon-32x32.png',
-        color: '#ff4500',
-        api: 'https://www.reddit.com/r/technology/hot.json?limit=20',
-        type: 'reddit',
-        enabled: true
-    },
-    // Reddit Science - 学术
-    reddit_science: {
-        id: 'reddit_science',
-        name: 'Reddit Science',
-        category: 'academic',
-        icon: 'https://www.redditstatic.com/desktop2x/img/favicon/favicon-32x32.png',
-        color: '#ff4500',
-        api: 'https://www.reddit.com/r/science/hot.json?limit=20',
-        type: 'reddit',
-        enabled: true
-    },
-    // Reddit Machine Learning - 学术
-    reddit_ml: {
-        id: 'reddit_ml',
-        name: 'Reddit ML',
-        category: 'academic',
-        icon: 'https://www.redditstatic.com/desktop2x/img/favicon/favicon-32x32.png',
-        color: '#ff4500',
-        api: 'https://www.reddit.com/r/MachineLearning/hot.json?limit=20',
-        type: 'reddit',
-        enabled: true
-    },
-    // Reddit World News - 综合
-    reddit_worldnews: {
-        id: 'reddit_worldnews',
-        name: 'World News',
-        category: 'general',
-        icon: 'https://www.redditstatic.com/desktop2x/img/favicon/favicon-32x32.png',
-        color: '#ff4500',
-        api: 'https://www.reddit.com/r/worldnews/hot.json?limit=20',
-        type: 'reddit',
-        enabled: true
-    },
-    // Reddit News - 综合
-    reddit_news: {
-        id: 'reddit_news',
-        name: 'Reddit News',
-        category: 'general',
-        icon: 'https://www.redditstatic.com/desktop2x/img/favicon/favicon-32x32.png',
-        color: '#ff4500',
-        api: 'https://www.reddit.com/r/news/hot.json?limit=20',
-        type: 'reddit',
-        enabled: true
-    },
-    // Lobsters - 开发者
-    lobsters: {
-        id: 'lobsters',
-        name: 'Lobsters',
-        category: 'dev',
-        icon: 'https://lobste.rs/apple-touch-icon-144.png',
-        color: '#ac130d',
-        api: 'https://lobste.rs/hottest.json',
-        type: 'lobsters',
         enabled: true
     }
 };
