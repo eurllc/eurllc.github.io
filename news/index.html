@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>实时新闻看板 - EURLLC</title>
+    <meta name="description" content="实时热门新闻聚合，优雅阅读科技、学术、综合热点资讯">
+    <link rel="shortcut icon" href="https://eurllc.github.io/media/images/favicon.png">
+    <link rel="stylesheet" href="//fonts.loli.net/css?family=Arimo:400,700,400italic">
+    <link rel="stylesheet" href="https://eurllc.github.io/media/css/icomoon.css">
+    <link rel="stylesheet" href="https://eurllc.github.io/media/css/main.css?v=1700490480467">
+    <link rel="stylesheet" href="news.css">
+</head>
+
+<body class="page-body">
+    <div class="page-container">
+        <!-- 侧边栏 -->
+        <div class="sidebar-menu toggle-others fixed">
+            <div class="sidebar-menu-inner">
+                <header class="logo-env">
+                    <div class="logo">
+                        <a href="https://eurllc.github.io" class="logo-expanded">
+                            <img src="https://eurllc.github.io/images/avatar.png" style="height:68px" alt="" />
+                        </a>
+                        <a href="https://eurllc.github.io" class="logo-collapsed">
+                            <img src="https://eurllc.github.io/media/images/favicon.png" width="40" alt="" />
+                        </a>
+                    </div>
+                    <div class="mobile-menu-toggle visible-xs">
+                        <a href="#" data-toggle="mobile-menu">
+                            <i class="icon-bar"></i>
+                        </a>
+                    </div>
+                </header>
+                <ul id="main-menu" class="main-menu">
+                    <li>
+                        <a href="https://eurllc.github.io">
+                            <i class="icon-home"></i>
+                            <span class="title">返回首頁</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="#">
+                            <i class="icon-fire"></i>
+                            <span class="title">实时新闻</span>
+                        </a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="#">
+                            <i class="icon-th-large"></i>
+                            <span class="title">新闻分类</span>
+                        </a>
+                        <ul>
+                            <li><a href="#" data-filter="tech"><i class="icon-desktop"></i>科技</a></li>
+                            <li><a href="#" data-filter="academic"><i class="icon-graduation-cap"></i>学术</a></li>
+                            <li><a href="#" data-filter="general"><i class="icon-globe"></i>综合</a></li>
+                            <li><a href="#" data-filter="dev"><i class="icon-code"></i>开发者</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 主内容区 -->
+        <div class="main-content">
+            <nav class="navbar user-info-navbar" role="navigation">
+                <ul class="user-info-menu left-links list-inline list-unstyled">
+                    <li class="hidden-sm hidden-xs">
+                        <a href="#" data-toggle="sidebar">
+                            <i class="icon-bar"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- 新闻看板内容 -->
+            <div class="news-container">
+                <!-- 页头 -->
+                <div class="news-header">
+                    <h1 class="news-title">
+                        <i class="icon-fire"></i>
+                        实时新闻看板
+                    </h1>
+                    <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+                        <div id="news-filters" class="news-filters">
+                            <!-- 筛选器通过 JS 渲染 -->
+                        </div>
+                        <button id="news-refresh-btn" class="news-refresh-btn">
+                            <i class="icon-refresh"></i>刷新
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 缓存信息 -->
+                <div id="news-cache-info" class="news-cache-info"></div>
+
+                <!-- 新闻网格 -->
+                <div id="news-grid" class="news-grid">
+                    <!-- 初始加载状态 -->
+                    <div class="news-loading">
+                        <div class="news-loading-spinner"></div>
+                        <p class="news-loading-text">正在加载新闻...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 页脚 -->
+            <footer class="main-footer sticky footer-type-1">
+                <div class="footer-inner">
+                    <div class="footer-text">
+                        Powered by <a href="https://github.com/eurllc" target="_blank">EURLLC</a>
+                        | 灵感来源于 <a href="https://github.com/ourongxing/newsnow" target="_blank">NewsNow</a>
+                        <br>
+                        <span>数据来源: RSSHub, Hacker News, V2EX</span>
+                    </div>
+                    <div class="go-up">
+                        <a href="#" rel="go-top">
+                            <i class="icon-up"></i>
+                        </a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="//cdnjs.loli.net/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://eurllc.github.io/media/js/bootstrap.min.js"></script>
+    <script src="https://eurllc.github.io/media/js/TweenMax.min.js"></script>
+    <script src="https://eurllc.github.io/media/js/resizeable.js"></script>
+    <script src="https://eurllc.github.io/media/js/xenon-toggles.js"></script>
+    <script src="https://eurllc.github.io/media/js/xenon-custom.js"></script>
+
+    <!-- 新闻看板脚本 -->
+    <script src="../js/news-sources.js"></script>
+    <script src="news.js"></script>
+</body>
+
+</html>
